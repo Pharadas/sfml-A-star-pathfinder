@@ -1,0 +1,33 @@
+src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.obj: \
+ C\:\Users\David\Documents\Repos\SpaceMonkeyMafiaSFML\SFML-2.5.1\src\SFML\Window\Context.cpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/Window/Context.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/Window/Export.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/Config.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/Window/GlResource.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/System/NonCopyable.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/System/Export.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/Window/ContextSettings.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/src/SFML/Window/GlContext.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/System/ThreadLocalPtr.hpp \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/System/ThreadLocal.hpp \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include\c++\cstdlib \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include\c++\x86_64-w64-mingw32\bits\c++config.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include\c++\x86_64-w64-mingw32\bits\os_defines.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include\c++\x86_64-w64-mingw32\bits\cpu_defines.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\stdlib.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\corecrt.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\_mingw.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\_mingw_mac.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\_mingw_secapi.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\vadefs.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\sdks/_mingw_ddk.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\corecrt_wstdlib.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include-fixed\limits.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include-fixed\syslimits.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\limits.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\crtdefs.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\sec_api\stdlib_s.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include\c++\stdlib.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\include\malloc.h \
+ c\:\programdata\chocolatey\lib\mingw\tools\install\mingw64\lib\gcc\x86_64-w64-mingw32\10.2.0\include\c++\bits\std_abs.h \
+ C\:/Users/David/Documents/Repos/SpaceMonkeyMafiaSFML/SFML-2.5.1/include/SFML/System/ThreadLocalPtr.inl
