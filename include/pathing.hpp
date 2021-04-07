@@ -5,86 +5,85 @@
 
 using namespace std;
 
-vector<tuple<pair<int, int>, int, int, int>> pathing(vector<vector<int>> level, vector<tuple<pair<int, int>, int, int, int>> positionValuesTuplesVector)
+typedef struct
+{
+	pair<int, int> position;
+	int distanceFromObjective;
+} pathingNode;
+
+typedef struct
+{
+	pair<int, int> positon;
+	size_t parentNodeIndex;
+} pathingNodesTree;
+
+pair<vector<pathingNode>, pathingNodesTree> pathing(vector<vector<int>> level, pair<int, int> endPosition, pair<int, int> startPosition, vector<pathingNode> positionValuesTuplesVector, pathingNodesTree thisPathingNodeTree)
 {
 
-	auto minValueTuple = min_element(positionValuesTuplesVector.begin(), positionValuesTuplesVector.end(), [](tuple<pair<int, int>, int, int, int> a, tuple<pair<int, int>, int, int, int> b) { return get<3>(a) < get<3>(b); });
-	// cout << get<0>(*minValueTuple).first << ' ' << get<0>(*minValueTuple).second << endl;
+	vector<pathingNode>::iterator minValueTuple = min_element(positionValuesTuplesVector.begin(), positionValuesTuplesVector.end(), [](pathingNode a, pathingNode b) { return a.distanceFromObjective < b.distanceFromObjective; });
 
-	// if (get<0>(*minValueTuple).first == level.size() && get<0>(*minValueTuple).second == level[0].size())
-	// {
-	// 	cout << "fuck you im done" << endl;
-	// }
-
-	tuple<pair<int, int>, int, int, int> positionTupleToPush;
+	pathingNode nodeToPush;
+	int positionToCheck;
 
 	// checar abajo
-	if (get<0>(*minValueTuple).first + 1 < level.size())
+	if (minValueTuple->position.first + 1 < level.size())
 	{
-		if (level[get<0>(*minValueTuple).first + 1][get<0>(*minValueTuple).second] != 255 && level[get<0>(*minValueTuple).first + 1][get<0>(*minValueTuple).second] != 7 && level[get<0>(*minValueTuple).first + 1][get<0>(*minValueTuple).second] != 1)
+		positionToCheck = level[minValueTuple->position.first + 1][minValueTuple->position.second];
+		if (positionToCheck != 255 && positionToCheck != 7 && positionToCheck != 1)
 		{
-			get<0>(positionTupleToPush).first = get<0>(*minValueTuple).first + 1;
-			get<0>(positionTupleToPush).second = get<0>(*minValueTuple).second;
-			get<1>(positionTupleToPush) = sqrt(pow(get<0>(positionTupleToPush).first + 1, 2) + pow(get<0>(positionTupleToPush).second, 2));
-			get<2>(positionTupleToPush) = sqrt(pow(level.size() - get<0>(positionTupleToPush).first + 1, 2) + pow(level[0].size() - get<0>(positionTupleToPush).second, 2));
-			get<3>(positionTupleToPush) = get<2>(positionTupleToPush);
-			positionValuesTuplesVector.push_back(positionTupleToPush);
+			nodeToPush.position.first = minValueTuple->position.first + 1;
+			nodeToPush.position.second = minValueTuple->position.second;
+			nodeToPush.distanceFromObjective = sqrt(pow((int)level.size() - nodeToPush.position.first, 2) + pow((int)level[0].size() - nodeToPush.position.second, 2));
+			positionValuesTuplesVector.push_back(nodeToPush);
 		}
 	}
 
 	// checar derecha
-	if (get<0>(*minValueTuple).second + 1 < level[0].size())
+	if (minValueTuple->position.second + 1 < level[0].size())
 	{
-		if (level[get<0>(*minValueTuple).first][get<0>(*minValueTuple).second + 1] != 255 && level[get<0>(*minValueTuple).first][get<0>(*minValueTuple).second + 1] != 7 && level[get<0>(*minValueTuple).first][get<0>(*minValueTuple).second + 1] != 1)
+		positionToCheck = level[minValueTuple->position.first][minValueTuple->position.second + 1];
+		if (positionToCheck != 255 && positionToCheck != 7 && positionToCheck != 1)
 		{
-			get<0>(positionTupleToPush).first = get<0>(*minValueTuple).first;
-			get<0>(positionTupleToPush).second = get<0>(*minValueTuple).second + 1;
-			get<1>(positionTupleToPush) = sqrt(pow(get<0>(positionTupleToPush).first, 2) + pow(get<0>(positionTupleToPush).second + 1, 2));
-			get<2>(positionTupleToPush) = sqrt(pow(level.size() - get<0>(positionTupleToPush).first, 2) + pow(level[0].size() - get<0>(positionTupleToPush).second + 1, 2));
-			get<3>(positionTupleToPush) = get<2>(positionTupleToPush);
-			positionValuesTuplesVector.push_back(positionTupleToPush);
+			nodeToPush.position.first = minValueTuple->position.first;
+			nodeToPush.position.second = minValueTuple->position.second + 1;
+			nodeToPush.distanceFromObjective = sqrt(pow((int)level.size() - nodeToPush.position.first, 2) + pow((int)level[0].size() - nodeToPush.position.second, 2));
+			positionValuesTuplesVector.push_back(nodeToPush);
 		}
 	}
 
 	// checar izquierda
-	if (get<0>(*minValueTuple).second - 1 >= 0)
+	if (minValueTuple->position.second - 1 >= 0)
 	{
-		if (level[get<0>(*minValueTuple).first][get<0>(*minValueTuple).second - 1] != 255 && level[get<0>(*minValueTuple).first][get<0>(*minValueTuple).second - 1] != 7 && level[get<0>(*minValueTuple).first][get<0>(*minValueTuple).second - 1] != 1)
+		positionToCheck = level[minValueTuple->position.first][minValueTuple->position.second - 1];
+		if (positionToCheck != 255 && positionToCheck != 7 && positionToCheck != 1)
 		{
-			get<0>(positionTupleToPush).first = get<0>(*minValueTuple).first;
-			get<0>(positionTupleToPush).second = get<0>(*minValueTuple).second - 1;
-			get<1>(positionTupleToPush) = sqrt(pow(get<0>(positionTupleToPush).first, 2) + pow(get<0>(positionTupleToPush).second + 1, 2));
-			get<2>(positionTupleToPush) = sqrt(pow(level.size() - get<0>(positionTupleToPush).first, 2) + pow(level[0].size() - get<0>(positionTupleToPush).second - 1, 2));
-			get<3>(positionTupleToPush) = get<2>(positionTupleToPush);
-			positionValuesTuplesVector.push_back(positionTupleToPush);
+			nodeToPush.position.first = minValueTuple->position.first;
+			nodeToPush.position.second = minValueTuple->position.second - 1;
+			nodeToPush.distanceFromObjective = sqrt(pow((int)level.size() - nodeToPush.position.first, 2) + pow((int)level[0].size() - nodeToPush.position.second, 2));
+			positionValuesTuplesVector.push_back(nodeToPush);
 		}
 	}
 
 	// checar arriba
-	if (get<0>(*minValueTuple).first - 1 < level.size())
+	if (minValueTuple->position.first - 1 < level.size())
 	{
-		if (level[get<0>(*minValueTuple).first - 1][get<0>(*minValueTuple).second] != 255 && level[get<0>(*minValueTuple).first - 1][get<0>(*minValueTuple).second] != 7 && level[get<0>(*minValueTuple).first - 1][get<0>(*minValueTuple).second] != 1)
+		positionToCheck = level[minValueTuple->position.first - 1][minValueTuple->position.second];
+		if (positionToCheck != 255 && positionToCheck != 7 && positionToCheck != 1)
 		{
-			// level[get<0>(*minValueTuple).first - 1][get<0>(*minValueTuple).second] != 255
-			get<0>(positionTupleToPush).first = get<0>(*minValueTuple).first - 1;
-			get<0>(positionTupleToPush).second = get<0>(*minValueTuple).second;
-			get<1>(positionTupleToPush) = sqrt(pow(get<0>(positionTupleToPush).first - 1, 2) + pow(get<0>(positionTupleToPush).second, 2));
-			get<2>(positionTupleToPush) = sqrt(pow(level.size() - get<0>(positionTupleToPush).first - 1, 2) + pow(level[0].size() - get<0>(positionTupleToPush).second, 2));
-			get<3>(positionTupleToPush) = get<2>(positionTupleToPush);
-			positionValuesTuplesVector.push_back(positionTupleToPush);
+			nodeToPush.position.first = minValueTuple->position.first - 1;
+			nodeToPush.position.second = minValueTuple->position.second;
+			nodeToPush.distanceFromObjective = sqrt(pow((int)level.size() - nodeToPush.position.first, 2) + pow((int)level[0].size() - nodeToPush.position.second, 2));
+			positionValuesTuplesVector.push_back(nodeToPush);
+		}
+	}
+	for (auto iter = positionValuesTuplesVector.begin(); iter != positionValuesTuplesVector.end(); ++iter)
+	{
+		if (iter->position == minValueTuple->position)
+		{
+			iter = positionValuesTuplesVector.erase(iter);
+			break;
 		}
 	}
 
-	auto it = find(positionValuesTuplesVector.begin(), positionValuesTuplesVector.end(), *minValueTuple);
-
-	if (it != positionValuesTuplesVector.end())
-	{
-		positionValuesTuplesVector.erase(it);
-	}
-
-	return positionValuesTuplesVector;
+	return pair<vector<pathingNode>, pathingNodesTree>(positionValuesTuplesVector, thisPathingNodeTree);
 }
-// int main() {
-// 	vector<vector<int>> level;
-
-// }
