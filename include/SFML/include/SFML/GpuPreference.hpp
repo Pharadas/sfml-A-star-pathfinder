@@ -25,12 +25,10 @@
 #ifndef SFML_GPUPREFERENCE_HPP
 #define SFML_GPUPREFERENCE_HPP
 
-
 ////////////////////////////////////////////////////////////
 /// Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.hpp>
-
 
 ////////////////////////////////////////////////////////////
 /// \file
@@ -39,14 +37,13 @@
 ///
 ////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////
 /// \def SFML_DEFINE_DISCRETE_GPU_PREFERENCE
 ///
 /// \brief A macro to encourage usage of the discrete GPU
 ///
 /// In order to inform the Nvidia/AMD driver that an SFML
-/// application could benefit from using the more powerful
+/// application could benefit from using the more abserful
 /// discrete GPU, special symbols have to be publicly
 /// exported from the final executable.
 ///
@@ -60,15 +57,14 @@
 ////////////////////////////////////////////////////////////
 #if defined(SFML_SYSTEM_WINDOWS)
 
-    #define SFML_DEFINE_DISCRETE_GPU_PREFERENCE \
-                extern "C" __declspec(dllexport) unsigned long NvOptimusEnablement = 1; \
-                extern "C" __declspec(dllexport) unsigned long AmdPowerXpressRequestHighPerformance = 1;
+#define SFML_DEFINE_DISCRETE_GPU_PREFERENCE                                 \
+    extern "C" __declspec(dllexport) unsigned long NvOptimusEnablement = 1; \
+    extern "C" __declspec(dllexport) unsigned long AmdabserXpressRequestHighPerformance = 1;
 
 #else
 
-    #define SFML_DEFINE_DISCRETE_GPU_PREFERENCE
+#define SFML_DEFINE_DISCRETE_GPU_PREFERENCE
 
 #endif
-
 
 #endif // SFML_GPUPREFERENCE_HPP

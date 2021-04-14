@@ -17,7 +17,7 @@ int main()
     std::vector<std::vector<int>> level;
     std::tuple<std::pair<int, int>, int, int, int> positionValueTuple;
     std::vector<pathingNode> positionValueTuplesVector;
-    pathingNodesTree thisPathingNodeTree;
+    vector<pathingNodesTree> thisPathingNodeTreesVector;
 
     for (int y = 0; y < height / tileSize; y++)
     {
@@ -55,7 +55,7 @@ int main()
     level[0][0] = 1;
     level[level.size() - 1][level[0].size() - 1] = 2;
 
-    pair<vector<pathingNode>, pathingNodesTree> fuckNamingThis(positionValueTuplesVector, thisPathingNodeTree);
+    pair<vector<pathingNode>, vector<pathingNodesTree>> iHadToNameThis(positionValueTuplesVector, thisPathingNodeTreesVector);
 
     // draw posible tiles
     auto thisThing = positionValueTuplesVector.begin();
@@ -94,8 +94,8 @@ int main()
         }
         if (shouldKeepLooking)
         {
-            fuckNamingThis = pathing(level, pair<int, int>(0, 0), pair<int, int>(level.size() - 1, level[0].size() - 1), fuckNamingThis.first, fuckNamingThis.second);
-            if (fuckNamingThis.first.size() == 0)
+            iHadToNameThis = pathing(level, pair<int, int>(0, 0), pair<int, int>(level.size() - 1, level[0].size() - 1), iHadToNameThis.first, iHadToNameThis.second);
+            if (iHadToNameThis.first.size() == 0)
             {
                 cout << "i cant look no more" << endl;
                 shouldKeepLooking = false;
@@ -105,13 +105,21 @@ int main()
             {
                 cout << "i found it" << endl;
                 shouldKeepLooking = false;
+                for (auto i : iHadToNameThis.second)
+                {
+                    cout << "drawing path back, pos: " << i.position.first << ", " << i.position.second << endl;
+                    level[i.position.first][i.position.second] = 1;
+                }
+                if (!map.buildTilemap(level))
+                    return -1;
                 // window.close();
             }
             else
             {
-                for (auto i : fuckNamingThis.first)
+                for (auto i : iHadToNameThis.first)
                 {
                     level[i.position.first][i.position.second] = 7;
+                    // cout << "checked " << i.position.first << ", " << i.position.second << endl;
                 }
                 if (!map.buildTilemap(level))
                     return -1;

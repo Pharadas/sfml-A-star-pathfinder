@@ -13,14 +13,14 @@ typedef struct
 
 typedef struct
 {
-	pair<int, int> positon;
-	size_t parentNodeIndex;
+	pair<int, int> position;
 } pathingNodesTree;
 
-pair<vector<pathingNode>, pathingNodesTree> pathing(vector<vector<int>> level, pair<int, int> endPosition, pair<int, int> startPosition, vector<pathingNode> positionValuesTuplesVector, pathingNodesTree thisPathingNodeTree)
+pair<vector<pathingNode>, vector<pathingNodesTree>> pathing(vector<vector<int>> level, pair<int, int> endPosition, pair<int, int> startPosition, vector<pathingNode> positionValuesTuplesVector, vector<pathingNodesTree> pathingNodeTreesVector)
 {
 
 	vector<pathingNode>::iterator minValueTuple = min_element(positionValuesTuplesVector.begin(), positionValuesTuplesVector.end(), [](pathingNode a, pathingNode b) { return a.distanceFromObjective < b.distanceFromObjective; });
+	// cout << "Min found had value: " << minValueTuple->distanceFromObjective << endl;
 
 	pathingNode nodeToPush;
 	int positionToCheck;
@@ -76,6 +76,11 @@ pair<vector<pathingNode>, pathingNodesTree> pathing(vector<vector<int>> level, p
 			positionValuesTuplesVector.push_back(nodeToPush);
 		}
 	}
+
+	pathingNodesTree nodeTreeToPush;
+	nodeTreeToPush.position = minValueTuple->position;
+	pathingNodeTreesVector.push_back(nodeTreeToPush);
+
 	for (auto iter = positionValuesTuplesVector.begin(); iter != positionValuesTuplesVector.end(); ++iter)
 	{
 		if (iter->position == minValueTuple->position)
@@ -85,5 +90,5 @@ pair<vector<pathingNode>, pathingNodesTree> pathing(vector<vector<int>> level, p
 		}
 	}
 
-	return pair<vector<pathingNode>, pathingNodesTree>(positionValuesTuplesVector, thisPathingNodeTree);
+	return pair<vector<pathingNode>, vector<pathingNodesTree>>(positionValuesTuplesVector, pathingNodeTreesVector);
 }
